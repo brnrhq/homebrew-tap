@@ -1,0 +1,27 @@
+# Builds, tests and audits every formula from source on Linux and macOS.
+name: tests
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  formulae:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      # Taps this repository (the pull request's version of it).
+      - uses: Homebrew/actions/setup-homebrew@main
+      - run: brew install --build-from-source brnrhq/tap/brnr brnrhq/tap/brnr-adapters
+      - run: brew test brnrhq/tap/brnr brnrhq/tap/brnr-adapters
+      - run: brew audit --strict brnrhq/tap/brnr brnrhq/tap/brnr-adapters
+      # brnr finds the adapters linked next to it.
+      - run: env BRNR_DIR="$RUNNER_TEMP/run" BRNR_HOME="$RUNNER_TEMP/home" brnr doctor

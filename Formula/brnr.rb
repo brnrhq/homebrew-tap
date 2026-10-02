@@ -12,6 +12,14 @@ class Brnr < Formula
     system "cargo", "install", *std_cargo_args
   end
 
+  def caveats
+    <<~EOS
+      For Claude Code and Codex, brnr needs their ACP adapters:
+        brew install brnrhq/tap/brnr-adapters
+      or from npm: @agentclientprotocol/claude-agent-acp, @agentclientprotocol/codex-acp
+    EOS
+  end
+
   test do
     assert_match "brnr proxy", shell_output("#{bin}/brnr --help")
     ENV["BRNR_DIR"] = testpath/"run"
