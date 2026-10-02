@@ -33,6 +33,13 @@ class BrnrAdapters < Formula
   end
 
   test do
+    # The adapters exit at once if they can't find the user's agent, but
+    # answering initialize doesn't run it: a stand-in will do.
+    agent = testpath/"agent"
+    agent.write "#!/bin/sh\nexit 1\n"
+    agent.chmod 0755
+    ENV["CLAUDE_CODE_EXECUTABLE"] = agent
+    ENV["CODEX_PATH"] = agent
     request = '{"jsonrpc":"2.0","id":1,"method":"initialize",' \
               '"params":{"protocolVersion":1,"clientCapabilities":{}}}'
     %w[claude-agent-acp codex-acp].each do |adapter|
