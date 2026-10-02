@@ -16,7 +16,8 @@ class Brnr < Formula
     <<~EOS
       For Claude Code and Codex, brnr needs their ACP adapters:
         brew install brnrhq/tap/brnr-adapters
-      or from npm: @agentclientprotocol/claude-agent-acp, @agentclientprotocol/codex-acp
+      (brnr-claude-adapter, brnr-codex-adapter), or from npm:
+      @agentclientprotocol/claude-agent-acp, @agentclientprotocol/codex-acp
     EOS
   end
 

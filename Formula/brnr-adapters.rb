@@ -15,7 +15,12 @@ class BrnrAdapters < Formula
     # single-file executables. It leaves out the agents the adapters' npm
     # packages would bring along: they run the user's claude and codex.
     system "adapters/build.sh", buildpath/"out"
-    bin.install "out/claude-agent-acp", "out/codex-acp"
+    # Names of their own, apart from the npm packages' commands. brnr 0.2.0's
+    # build.sh still used the npm names.
+    { "brnr-claude-adapter" => "claude-agent-acp", "brnr-codex-adapter" => "codex-acp" }.each do |name, old|
+      built = File.exist?("out/#{name}") ? "out/#{name}" : "out/#{old}"
+      bin.install built => name
+    end
     (pkgshare/"licenses").install Dir["out/licenses/*"]
   end
 
@@ -23,9 +28,10 @@ class BrnrAdapters < Formula
     <<~EOS
       The adapters run your own Claude Code (claude) and Codex (codex); install
       those separately. brnr finds the adapters by name:
-        brnr proxy -- claude-agent-acp
+        brnr proxy -- brnr-claude-adapter
+        brnr proxy -- brnr-codex-adapter
 
-      claude-agent-acp includes the Claude Agent SDK, which is licensed under
+      brnr-claude-adapter includes the Claude Agent SDK, which is licensed under
       Anthropic's Commercial Terms: https://www.anthropic.com/legal/commercial-terms
       The licenses of everything compiled in are in:
         #{opt_pkgshare}/licenses
@@ -33,8 +39,10 @@ class BrnrAdapters < Formula
   end
 
   test do
-    # The adapters exit at once if they can't find the user's agent, but
-    # answering initialize doesn't run it: a stand-in will do.
+    # The adapters exit at once if they can't find the user's agent: a
+    # stand-in will do. With it, claude's adapter answers initialize, and
+    # codex's answers with an error (it starts the agent to initialize); both
+    # show the executable runs and speaks ACP.
     agent = testpath/"agent"
     agent.write "#!/bin/sh\nexit 1\n"
     agent.chmod 0755
@@ -42,13 +50,18 @@ class BrnrAdapters < Formula
     ENV["CODEX_PATH"] = agent
     request = '{"jsonrpc":"2.0","id":1,"method":"initialize",' \
               '"params":{"protocolVersion":1,"clientCapabilities":{}}}'
-    %w[claude-agent-acp codex-acp].each do |adapter|
-      # Stdin stays open until the answer is in: codex-acp exits at EOF.
+    %w[brnr-claude-adapter brnr-codex-adapter].each do |adapter|
+      # Stdin stays open until the answer is in: the codex adapter exits at EOF.
       IO.popen(bin/adapter, "r+") do |io|
         io.puts request
-        assert_match '"protocolVersion":1', io.gets
+        assert_match '{"jsonrpc":"2.0","id":1,', io.gets
         io.close_write
       end
+    end
+    IO.popen(bin/"brnr-claude-adapter", "r+") do |io|
+      io.puts request
+      assert_match '"protocolVersion":1', io.gets
+      io.close_write
     end
   end
 end
