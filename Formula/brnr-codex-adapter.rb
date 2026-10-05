@@ -8,6 +8,7 @@ class BrnrCodexAdapter < Formula
   version "2.1.1"
   sha256 "a45efd6fee6c17d44f2cf384ff8a57748fb989cd287fe616df2af2d6610084be"
   license "Apache-2.0"
+  revision 1
   head "https://github.com/brnrhq/brnr.git", branch: "main"
 
   depends_on "bun" => :build
@@ -17,9 +18,7 @@ class BrnrCodexAdapter < Formula
     # executable. It leaves out the agent the npm package would bring along:
     # the adapter runs the user's codex.
     system "adapters/build.sh", buildpath/"out", "codex"
-    # brnr 0.2.0's build.sh builds both adapters, under the npm names.
-    built = File.exist?("out/brnr-codex-adapter") ? "out/brnr-codex-adapter" : "out/codex-acp"
-    bin.install built => "brnr-codex-adapter"
+    bin.install "out/brnr-codex-adapter"
     (pkgshare/"licenses").install Dir["out/licenses/*"]
   end
 
@@ -40,6 +39,8 @@ class BrnrCodexAdapter < Formula
   end
 
   test do
+    assert_equal "brnr-codex-adapter #{version} (@agentclientprotocol/codex-acp)",
+                 shell_output("#{bin}/brnr-codex-adapter --version").strip
     # The adapter exits at once if it can't find codex. With a stand-in it
     # answers initialize with an error (it starts the agent to initialize),
     # which still shows it runs and speaks ACP.
