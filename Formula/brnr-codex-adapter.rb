@@ -4,9 +4,9 @@
 class BrnrCodexAdapter < Formula
   desc "JetBrains' ACP adapter for Codex (codex-acp), needing no Node.js"
   homepage "https://brnrhq.github.io/brnr/"
-  url "https://github.com/brnrhq/brnr/archive/refs/tags/v0.2.0.tar.gz"
+  url "https://github.com/brnrhq/brnr/archive/refs/tags/v0.3.0.tar.gz"
   version "2.1.1"
-  sha256 "d0d76cd7a83c2b03da95137d3a0584376ed8a0bdad66056bcae2922ef0f9ad20"
+  sha256 "a45efd6fee6c17d44f2cf384ff8a57748fb989cd287fe616df2af2d6610084be"
   license "Apache-2.0"
   head "https://github.com/brnrhq/brnr.git", branch: "main"
 
