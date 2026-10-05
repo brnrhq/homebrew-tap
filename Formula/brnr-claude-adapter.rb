@@ -34,7 +34,7 @@ class BrnrClaudeAdapter < Formula
 
       It runs your own Claude Code (claude); install that separately. In an
       editor, or with brnr start:
-        brnr proxy -- brnr-claude-adapter
+        brnr acp -- brnr-claude-adapter
 
       It includes the Claude Agent SDK, which is licensed under Anthropic's
       Commercial Terms: https://www.anthropic.com/legal/commercial-terms

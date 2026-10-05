@@ -32,7 +32,7 @@ class BrnrCodexAdapter < Formula
 
       It runs your own Codex (codex); install that separately. In an editor,
       or with brnr start:
-        brnr proxy -- brnr-codex-adapter
+        brnr acp -- brnr-codex-adapter
 
       The licenses of everything compiled in are in:
         #{opt_pkgshare}/licenses
