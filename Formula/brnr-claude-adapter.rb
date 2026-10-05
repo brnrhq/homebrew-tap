@@ -10,6 +10,7 @@ class BrnrClaudeAdapter < Formula
   # claude-agent-acp is Apache-2.0, but it compiles in the Claude Agent SDK,
   # which is under Anthropic's Commercial Terms.
   license :cannot_represent
+  revision 1
   head "https://github.com/brnrhq/brnr.git", branch: "main"
 
   depends_on "bun" => :build
@@ -19,9 +20,7 @@ class BrnrClaudeAdapter < Formula
     # executable. It leaves out the agent the npm package would bring along:
     # the adapter runs the user's claude.
     system "adapters/build.sh", buildpath/"out", "claude"
-    # brnr 0.2.0's build.sh builds both adapters, under the npm names.
-    built = File.exist?("out/brnr-claude-adapter") ? "out/brnr-claude-adapter" : "out/claude-agent-acp"
-    bin.install built => "brnr-claude-adapter"
+    bin.install "out/brnr-claude-adapter"
     (pkgshare/"licenses").install Dir["out/licenses/*"]
   end
 
@@ -44,6 +43,8 @@ class BrnrClaudeAdapter < Formula
   end
 
   test do
+    assert_equal "brnr-claude-adapter #{version} (@agentclientprotocol/claude-agent-acp)",
+                 shell_output("#{bin}/brnr-claude-adapter --version").strip
     # The adapter exits at once if it can't find claude, but answering
     # initialize needs no real one: a stand-in will do.
     agent = testpath/"agent"
