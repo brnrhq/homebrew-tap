@@ -20,8 +20,8 @@ jobs:
     steps:
       # Taps this repository (the pull request's version of it).
       - uses: Homebrew/actions/setup-homebrew@main
-      - run: brew install --build-from-source brnrhq/tap/brnr brnrhq/tap/brnr-adapters
-      - run: brew test brnrhq/tap/brnr brnrhq/tap/brnr-adapters
-      - run: brew audit --strict brnrhq/tap/brnr brnrhq/tap/brnr-adapters
+      - run: brew install --build-from-source brnrhq/tap/brnr brnrhq/tap/brnr-claude-adapter brnrhq/tap/brnr-codex-adapter
+      - run: brew test brnrhq/tap/brnr brnrhq/tap/brnr-claude-adapter brnrhq/tap/brnr-codex-adapter
+      - run: brew audit --strict brnrhq/tap/brnr brnrhq/tap/brnr-claude-adapter brnrhq/tap/brnr-codex-adapter
       # brnr finds the adapters linked next to it (brnr 0.2.0 checks for the npm names; later ones for both).
       - run: env BRNR_DIR="$RUNNER_TEMP/run" BRNR_HOME="$RUNNER_TEMP/home" brnr doctor
