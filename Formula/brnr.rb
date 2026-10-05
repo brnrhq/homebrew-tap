@@ -22,8 +22,7 @@ class Brnr < Formula
   end
 
   test do
-    # brnr acp, called brnr proxy until 0.3.0.
-    assert_match(/brnr (acp|proxy) /, shell_output("#{bin}/brnr --help"))
+    assert_match(/^brnr \d+\.\d+\.\d+$/, shell_output("#{bin}/brnr --version").strip)
     ENV["BRNR_DIR"] = testpath/"run"
     ENV["BRNR_HOME"] = testpath/"home"
     assert_equal "[]", shell_output("#{bin}/brnr list --json").strip
