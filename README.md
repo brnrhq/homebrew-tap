@@ -18,10 +18,17 @@ brew install brnrhq/tap/brnr-claude-adapter   # for Claude Code
 brew install brnrhq/tap/brnr-codex-adapter    # for Codex
 ```
 
-The ACP adapters for Claude Code and Codex, as `brnr-claude-adapter` and
-`brnr-codex-adapter` (names of their own, apart from the npm packages'
-`claude-agent-acp` and `codex-acp`), compiled on your machine with bun from
-brnr's `adapters/`, and linked next to `brnr`. Each formula's version is the
-npm package's, so `brew upgrade` rebuilds an adapter when its package moves.
-They run your own `claude` and `codex`. brnr-claude-adapter includes the
-Claude Agent SDK, which is licensed under Anthropic's Commercial Terms.
+These are the community's ACP adapters, not brnr's work:
+
+| Formula | Is | By | License |
+|---|---|---|---|
+| `brnr-claude-adapter` | [claude-agent-acp](https://github.com/agentclientprotocol/claude-agent-acp) | Zed Industries, Inc. and contributors | Apache-2.0; it includes Anthropic's Claude Agent SDK, under Anthropic's [Commercial Terms](https://www.anthropic.com/legal/commercial-terms) |
+| `brnr-codex-adapter` | [codex-acp](https://github.com/agentclientprotocol/codex-acp) | JetBrains s.r.o. | Apache-2.0 |
+
+Each formula compiles its adapter on your machine, unchanged, with bun into a
+standalone executable that needs no Node.js, and links it next to `brnr`.
+brnr's part is a small launcher in front (it finds your own `claude` or
+`codex`, and answers `--version`) and the build, from brnr's `adapters/`. The
+commands have names of their own, apart from the npm packages'
+`claude-agent-acp` and `codex-acp`. Each formula's version is the npm
+package's, so `brew upgrade` rebuilds an adapter when its package moves.

@@ -2,7 +2,7 @@
 # workflow writes from adapters/package.json: brew upgrade rebuilds the
 # adapter when that moves, not on every brnr release.
 class BrnrClaudeAdapter < Formula
-  desc "ACP adapter for Claude Code (claude-agent-acp), compiled locally for brnr"
+  desc "Zed's ACP adapter for Claude Code (claude-agent-acp), needing no Node.js"
   homepage "https://brnrhq.github.io/brnr/"
   url "https://github.com/brnrhq/brnr/archive/refs/tags/v0.2.0.tar.gz"
   version "0.85.1"
@@ -27,8 +27,13 @@ class BrnrClaudeAdapter < Formula
 
   def caveats
     <<~EOS
-      The adapter runs your own Claude Code (claude); install it separately. In
-      an editor, or with brnr start:
+      brnr-claude-adapter is claude-agent-acp, by Zed Industries, Inc. and
+      contributors (Apache-2.0): https://github.com/agentclientprotocol/claude-agent-acp
+      brnr compiles it, unchanged, into a standalone executable that needs no
+      Node.js, with a small launcher of its own in front.
+
+      It runs your own Claude Code (claude); install that separately. In an
+      editor, or with brnr start:
         brnr proxy -- brnr-claude-adapter
 
       It includes the Claude Agent SDK, which is licensed under Anthropic's

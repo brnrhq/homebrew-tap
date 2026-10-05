@@ -2,7 +2,7 @@
 # workflow writes from adapters/package.json: brew upgrade rebuilds the
 # adapter when that moves, not on every brnr release.
 class BrnrCodexAdapter < Formula
-  desc "ACP adapter for Codex (codex-acp), compiled locally for brnr"
+  desc "JetBrains' ACP adapter for Codex (codex-acp), needing no Node.js"
   homepage "https://brnrhq.github.io/brnr/"
   url "https://github.com/brnrhq/brnr/archive/refs/tags/v0.2.0.tar.gz"
   version "2.1.1"
@@ -25,8 +25,13 @@ class BrnrCodexAdapter < Formula
 
   def caveats
     <<~EOS
-      The adapter runs your own Codex (codex); install it separately. In
-      an editor, or with brnr start:
+      brnr-codex-adapter is codex-acp, by JetBrains s.r.o. (Apache-2.0):
+        https://github.com/agentclientprotocol/codex-acp
+      brnr compiles it, unchanged, into a standalone executable that needs no
+      Node.js, with a small launcher of its own in front.
+
+      It runs your own Codex (codex); install that separately. In an editor,
+      or with brnr start:
         brnr proxy -- brnr-codex-adapter
 
       The licenses of everything compiled in are in:
