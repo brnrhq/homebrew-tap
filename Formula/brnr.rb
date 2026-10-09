@@ -1,8 +1,8 @@
 class Brnr < Formula
   desc "Burner phone for your coding agents: run ACP agents behind a reachable host"
   homepage "https://brnrhq.github.io/brnr/"
-  url "https://github.com/brnrhq/brnr/archive/refs/tags/v0.6.0.tar.gz"
-  sha256 "c4bbff0ade6d08f468ebbef2c5feedc0a06cf17fdd6445d8dbc6961854477a96"
+  url "https://github.com/brnrhq/brnr/releases/download/v0.7.0/brnr-0.7.0.tar.gz"
+  sha256 "0cc4cf1794faf84be4f2b1d7c7e4a0b6d3979b3b4af0a1788ccaa793cf1c0fae"
   license "Apache-2.0"
   head "https://github.com/brnrhq/brnr.git", branch: "main"
 
