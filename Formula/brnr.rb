@@ -25,6 +25,7 @@ class Brnr < Formula
     assert_match(/^brnr \d+\.\d+\.\d+$/, shell_output("#{bin}/brnr --version").strip)
     ENV["BRNR_DIR"] = testpath/"run"
     ENV["BRNR_HOME"] = testpath/"home"
-    assert_equal "[]", shell_output("#{bin}/brnr session list --json").strip
+    # A list is an object since 0.10.0: {"sessions": [...]}.
+    assert_equal({ "sessions" => [] }, JSON.parse(shell_output("#{bin}/brnr session list --json")))
   end
 end
