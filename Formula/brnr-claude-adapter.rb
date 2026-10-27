@@ -4,9 +4,9 @@
 class BrnrClaudeAdapter < Formula
   desc "Zed's ACP adapter for Claude Code (claude-agent-acp), needing no Node.js"
   homepage "https://brnrhq.github.io/brnr/"
-  url "https://github.com/brnrhq/brnr/releases/download/v0.11.0/brnr-0.11.0.tar.gz"
-  version "0.90.0"
-  sha256 "73f69251817ac2f818bb4d0c4aef359572fa515a68cefe2564f9c55186db1c80"
+  url "https://github.com/brnrhq/brnr/releases/download/v0.12.0/brnr-0.12.0.tar.gz"
+  version "0.94.0"
+  sha256 "4d2f2bbb3f0015a33932398656454e1d310bea4de772df72a534bade74c112a3"
   # claude-agent-acp is Apache-2.0, but it compiles in the Claude Agent SDK,
   # which is under Anthropic's Commercial Terms.
   license :cannot_represent
