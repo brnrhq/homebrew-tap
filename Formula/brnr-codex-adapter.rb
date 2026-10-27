@@ -28,9 +28,10 @@ class BrnrCodexAdapter < Formula
       brnr compiles it, unchanged, into a standalone executable that needs no
       Node.js, with a small launcher of its own in front.
 
-      It runs your own Codex (codex); install that separately. In an editor,
-      or with brnr session new:
+      It runs your own Codex (codex); install that separately. In an editor:
         brnr acp -- brnr-codex-adapter
+      Headless:
+        brnr session new --prompt "fix the failing tests" -- brnr-codex-adapter
 
       The licenses of everything compiled in are in:
         #{opt_pkgshare}/licenses
