@@ -31,7 +31,7 @@ class BrnrClaudeAdapter < Formula
       Node.js, with a small launcher of its own in front.
 
       It runs your own Claude Code (claude); install that separately. In an
-      editor, or with brnr start:
+      editor, or with brnr session new:
         brnr acp -- brnr-claude-adapter
 
       It includes the Claude Agent SDK, which is licensed under Anthropic's

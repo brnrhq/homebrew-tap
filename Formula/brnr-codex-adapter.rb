@@ -29,7 +29,7 @@ class BrnrCodexAdapter < Formula
       Node.js, with a small launcher of its own in front.
 
       It runs your own Codex (codex); install that separately. In an editor,
-      or with brnr start:
+      or with brnr session new:
         brnr acp -- brnr-codex-adapter
 
       The licenses of everything compiled in are in:
