@@ -30,9 +30,10 @@ class BrnrClaudeAdapter < Formula
       brnr compiles it, unchanged, into a standalone executable that needs no
       Node.js, with a small launcher of its own in front.
 
-      It runs your own Claude Code (claude); install that separately. In an
-      editor, or with brnr start:
+      It runs your own Claude Code (claude); install that separately. In an editor:
         brnr acp -- brnr-claude-adapter
+      Headless:
+        brnr session new --prompt "fix the failing tests" -- brnr-claude-adapter
 
       It includes the Claude Agent SDK, which is licensed under Anthropic's
       Commercial Terms: https://www.anthropic.com/legal/commercial-terms

@@ -14,10 +14,12 @@ class Brnr < Formula
 
   def caveats
     <<~EOS
-      For Claude Code and Codex, brnr needs their ACP adapters:
+      For Claude Code, Codex and Muse Code, brnr needs their ACP adapters:
         brew install brnrhq/tap/brnr-claude-adapter
         brew install brnrhq/tap/brnr-codex-adapter
-      or from npm: @agentclientprotocol/claude-agent-acp, @agentclientprotocol/codex-acp
+        brew install brnrhq/tap/brnr-muse-adapter
+      or from npm: @agentclientprotocol/claude-agent-acp, @agentclientprotocol/codex-acp,
+      @brokkai/muse-acp
     EOS
   end
 
